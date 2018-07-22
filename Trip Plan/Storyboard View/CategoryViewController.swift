@@ -101,6 +101,30 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    @IBAction func menuBtn(_ sender: UIBarButtonItem) {
+        
+        if loginModel.isLoggedIn(){
+            
+            Menu(self).show()
+            
+        }else{
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginNav") as? UINavigationController
+            {
+                
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+        
+    }
+    
+    @IBAction func slideMenu(_ sender: UIScreenEdgePanGestureRecognizer) {
+        
+        if sender.state == .began{
+            Menu(self).show()
+        }
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segueDest == "detail" {
             
@@ -127,22 +151,7 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if(segue.identifier == "accountSegue"){
             
-            if loginModel.isLoggedIn(){
-                
-                // Get reference to the destination view controller
-                let navPreview : UINavigationController = segue.destination as! UINavigationController
-                let preview : SettingViewController = navPreview.viewControllers[0] as! SettingViewController
-                // Set the property to the selected location so when the view for
-                // detail view controller loads, it can access that property to get the feeditem obj
-                self.segueDest = ""
-                preview.loginModel = loginModel
-            }else{
-                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginNav") as? UINavigationController
-                {
-                    
-                    self.present(vc, animated: true, completion: nil)
-                }
-            }
+            
             
         }
        

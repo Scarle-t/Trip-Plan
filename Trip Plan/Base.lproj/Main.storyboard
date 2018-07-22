@@ -147,7 +147,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3197.5999999999999" y="-559.35960591133005"/>
+            <point key="canvasLocation" x="3905" y="-589"/>
         </scene>
         <!--Trip Plan-->
         <scene sceneID="RCj-2R-Okz">
@@ -273,6 +273,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Wrv-R8-Dgw" firstAttribute="leading" secondItem="WHh-PM-G99" secondAttribute="leading" id="DHp-7v-i82"/>
                             <constraint firstItem="Wrv-R8-Dgw" firstAttribute="trailing" secondItem="WHh-PM-G99" secondAttribute="trailing" id="JAS-pS-NKp"/>
@@ -280,13 +281,15 @@
                             <constraint firstItem="Wrv-R8-Dgw" firstAttribute="top" secondItem="WHh-PM-G99" secondAttribute="top" id="dXJ-LW-Sk9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WHh-PM-G99"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="w6Q-nz-ytq" appends="YES" id="Dfa-4F-Jy7"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Category" id="cl3-5k-GB2">
                         <barButtonItem key="leftBarButtonItem" image="User" id="Lfu-Lv-HaC">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="navAccount:" destination="glL-x3-bVg" id="rsg-eb-ECq"/>
-                                <segue destination="Dgc-Ez-7He" kind="show" identifier="accountSegue" id="Jv5-9J-PPN"/>
+                                <action selector="menuBtn:" destination="glL-x3-bVg" id="gne-7H-1pR"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="6l2-vJ-rxv">
@@ -304,6 +307,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hnd-OH-P9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="w6Q-nz-ytq">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="slideMenu:" destination="glL-x3-bVg" id="erd-EF-GBp"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2021.5999999999999" y="860.83743842364538"/>
         </scene>
@@ -371,6 +380,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e25-gK-hop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2831.1999999999998" y="860.83743842364538"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rUE-Ni-Gui">
+            <objects>
+                <viewController id="FHI-L2-vAx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q3k-yr-yiZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="q0d-VM-4gc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QDh-Iv-oJ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3905" y="861"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="ddd-Bb-uyF">
@@ -672,7 +696,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3703.1999999999998" y="132.26600985221674"/>
+            <point key="canvasLocation" x="3905" y="132"/>
         </scene>
         <!--Init Navi Controller-->
         <scene sceneID="aXs-pk-Wqq">
@@ -1224,58 +1248,6 @@
             </objects>
             <point key="canvasLocation" x="4796" y="2263.3004926108374"/>
         </scene>
-        <!--Settings-->
-        <scene sceneID="t9l-cT-JS5">
-            <objects>
-                <viewController id="EJo-eX-pdp" customClass="SettingViewController" customModule="Trip_Plan" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="waH-rL-rDV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5JT-Jy-z3d">
-                                <rect key="frame" x="0.0" y="140" width="375" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasicCell" id="mhR-MJ-fwJ">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mhR-MJ-fwJ" id="obY-PK-Tbg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="EJo-eX-pdp" id="6ky-Sz-yzx"/>
-                                    <outlet property="delegate" destination="EJo-eX-pdp" id="pbE-TT-zb9"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="5JT-Jy-z3d" firstAttribute="bottom" secondItem="tfk-pT-SwF" secondAttribute="bottom" id="H7U-gI-GrA"/>
-                            <constraint firstItem="5JT-Jy-z3d" firstAttribute="top" secondItem="tfk-pT-SwF" secondAttribute="top" id="dPT-vn-b5L"/>
-                            <constraint firstItem="5JT-Jy-z3d" firstAttribute="trailing" secondItem="tfk-pT-SwF" secondAttribute="trailing" id="nXR-52-Fzd"/>
-                            <constraint firstItem="5JT-Jy-z3d" firstAttribute="leading" secondItem="tfk-pT-SwF" secondAttribute="leading" id="t3x-N9-yAQ"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="tfk-pT-SwF"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" id="Yxm-xx-ifH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="2Tl-0a-DPU">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="navDone:" destination="EJo-eX-pdp" id="aE0-Se-zrt"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="listTableView" destination="5JT-Jy-z3d" id="qAs-4i-Fta"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qbv-CV-Ana" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2022" y="3016"/>
-        </scene>
         <!--Your Posts-->
         <scene sceneID="u4p-XR-txo">
             <objects>
@@ -1322,32 +1294,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U5B-u3-IKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3904.8000000000002" y="3015.5172413793107"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="WyI-w7-ULQ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Dgc-Ez-7He" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="umw-Kf-8AB">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="1" green="0.80536913686794642" blue="0.62680397668722898" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="EJo-eX-pdp" kind="relationship" relationship="rootViewController" id="5y5-f9-TG4"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VJx-wI-gkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2020" y="2264.039408866995"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fV1-yA-nJM">
@@ -1429,7 +1375,7 @@
         <image name="close_wht" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RJW-So-DBs"/>
+        <segue reference="ep8-O3-KPm"/>
         <segue reference="otZ-H1-HVJ"/>
     </inferredMetricsTieBreakers>
 </document>

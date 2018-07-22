@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A60F506320901B000042F417 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F506220901B000042F417 /* AccountDetailViewController.swift */; };
-		A60F5065209058710042F417 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F5064209058710042F417 /* SettingViewController.swift */; };
 		A61CA350208FDD3E00BC544D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A61CA34F208FDD3E00BC544D /* libsqlite3.tbd */; };
 		A61CA353208FDFBF00BC544D /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61CA352208FDFBF00BC544D /* SQLite.swift */; };
 		A6243A9320865A8F00BBD173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6243A9220865A8F00BBD173 /* AppDelegate.swift */; };
-		A6243A9520865A8F00BBD173 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6243A9420865A8F00BBD173 /* ViewController.swift */; };
 		A6243A9820865A8F00BBD173 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6243A9620865A8F00BBD173 /* Main.storyboard */; };
 		A6243A9A20865A9000BBD173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6243A9920865A9000BBD173 /* Assets.xcassets */; };
 		A6243A9D20865A9000BBD173 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6243A9B20865A9000BBD173 /* LaunchScreen.storyboard */; };
@@ -33,6 +31,7 @@
 		A66C93EC208D4DD600D3A1A3 /* initTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C93E9208D4DD600D3A1A3 /* initTabBarController.swift */; };
 		A66C93EE208D645E00D3A1A3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C93ED208D645E00D3A1A3 /* Session.swift */; };
 		A66C93F0208D6BD700D3A1A3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C93EF208D6BD700D3A1A3 /* LoginViewController.swift */; };
+		A68D1BFC2104476A00E0CCDF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68D1BFB2104476A00E0CCDF /* ViewController.swift */; };
 		A69243C920B182CF0097D236 /* TrendingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69243C820B182CF0097D236 /* TrendingCollectionViewController.swift */; };
 		A69243CB20B182F90097D236 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69243CA20B182F90097D236 /* TrendingCell.swift */; };
 		A6B1195F208BD691003DB16E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B1195E208BD691003DB16E /* CategoryViewController.swift */; };
@@ -53,13 +52,11 @@
 
 /* Begin PBXFileReference section */
 		A60F506220901B000042F417 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
-		A60F5064209058710042F417 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A61CA34F208FDD3E00BC544D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A61CA351208FDD8900BC544D /* sqlite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sqlite.h; sourceTree = "<group>"; };
 		A61CA352208FDFBF00BC544D /* SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLite.swift; sourceTree = "<group>"; };
 		A6243A8F20865A8E00BBD173 /* Trip Plan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trip Plan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6243A9220865A8F00BBD173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A6243A9420865A8F00BBD173 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A6243A9720865A8F00BBD173 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6243A9920865A9000BBD173 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6243A9C20865A9000BBD173 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -82,6 +79,7 @@
 		A66C93E9208D4DD600D3A1A3 /* initTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = initTabBarController.swift; sourceTree = "<group>"; };
 		A66C93ED208D645E00D3A1A3 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		A66C93EF208D6BD700D3A1A3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A68D1BFB2104476A00E0CCDF /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A69243C820B182CF0097D236 /* TrendingCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCollectionViewController.swift; sourceTree = "<group>"; };
 		A69243CA20B182F90097D236 /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
 		A6B1195E208BD691003DB16E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -143,49 +141,96 @@
 				A663EBF320FDC6D4002A079E /* Trip Plan.entitlements */,
 				A61CA351208FDD8900BC544D /* sqlite.h */,
 				A6243A9E20865A9000BBD173 /* Info.plist */,
+				A6243A9220865A8F00BBD173 /* AppDelegate.swift */,
+				A6243A9920865A9000BBD173 /* Assets.xcassets */,
+				A68D1BF52104454600E0CCDF /* Action */,
+				A68D1BF8210445F800E0CCDF /* Class */,
+				A68D1BF6210445A200E0CCDF /* Custom View */,
+				A6243A9B20865A9000BBD173 /* LaunchScreen.storyboard */,
+				A6243A9620865A8F00BBD173 /* Main.storyboard */,
+				A68D1BF32104443F00E0CCDF /* Object */,
+				A68D1BF7210445C900E0CCDF /* Storboard Cell */,
+				A68D1BF42104446700E0CCDF /* Storyboard View */,
+			);
+			path = "Trip Plan";
+			sourceTree = "<group>";
+		};
+		A68D1BF32104443F00E0CCDF /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				A6243AA820865D0700BBD173 /* ArticleModel.swift */,
+				A6B9B58A208BFC9F003C4E86 /* CategoryModel.swift */,
+				A66C1488209396D70021FF63 /* CommentModel.swift */,
+				A6243AA620865CFB00BBD173 /* HomeModel.swift */,
+				A6B9B596208D0C1D003C4E86 /* LoginModel.swift */,
+				A62CD5F12092707000E34230 /* PostingModel.swift */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
+		A68D1BF42104446700E0CCDF /* Storyboard View */ = {
+			isa = PBXGroup;
+			children = (
+				A68D1BFB2104476A00E0CCDF /* ViewController.swift */,
 				A60F506220901B000042F417 /* AccountDetailViewController.swift */,
 				A6E41ED7208D2B6B00207E5D /* AccountViewController.swift */,
-				A6243A9220865A8F00BBD173 /* AppDelegate.swift */,
-				A6243AA820865D0700BBD173 /* ArticleModel.swift */,
-				A6B9B58C208C01F5003C4E86 /* CategoryDownload.swift */,
 				A6B9B58E208C05D0003C4E86 /* CategoryItemController.swift */,
-				A6B9B590208C0783003C4E86 /* CategoryItemDownload.swift */,
-				A6B9B58A208BFC9F003C4E86 /* CategoryModel.swift */,
 				A6B1195E208BD691003DB16E /* CategoryViewController.swift */,
-				A628FE3C2102F467001B008C /* CommentCollectionViewCell.swift */,
-				A66C148A209440CA0021FF63 /* CommentDownload.swift */,
-				A66C1488209396D70021FF63 /* CommentModel.swift */,
-				A65700EB2096010C00F271B6 /* CommentPosting.swift */,
-				A65922562096E20D00F16E32 /* deletePost.swift */,
 				A6243AAA208665CD00BBD173 /* DetailViewController.swift */,
-				A6243AA620865CFB00BBD173 /* HomeModel.swift */,
 				A6B9B592208C1638003C4E86 /* imgViewController.swift */,
 				A66C93E8208D4DD500D3A1A3 /* initNaviController.swift */,
 				A66C93E9208D4DD600D3A1A3 /* initTabBarController.swift */,
 				A66C93E7208D4DD500D3A1A3 /* InitViewController.swift */,
-				A6E41EDB208D3F4700207E5D /* LoginActionModel.swift */,
-				A6B9B596208D0C1D003C4E86 /* LoginModel.swift */,
 				A66C93EF208D6BD700D3A1A3 /* LoginViewController.swift */,
 				A6F2458520965BE80010236E /* MapViewController.swift */,
-				A663EBF420FDE0FC002A079E /* Menu.swift */,
-				A6E41ED9208D329900207E5D /* networkTest.swift */,
 				A6F245872096724E0010236E /* postEditViewController.swift */,
-				A62CD5F12092707000E34230 /* PostingModel.swift */,
 				A6B9B594208CF0AF003C4E86 /* PostingViewController.swift */,
-				A669B18F209616940055A65D /* regAction.swift */,
 				A669B18D209611260055A65D /* RegisterViewController.swift */,
 				A6B9B598208D10B1003C4E86 /* SearchViewController.swift */,
-				A66C93ED208D645E00D3A1A3 /* Session.swift */,
-				A60F5064209058710042F417 /* SettingViewController.swift */,
-				A61CA352208FDFBF00BC544D /* SQLite.swift */,
-				A69243CA20B182F90097D236 /* TrendingCell.swift */,
 				A69243C820B182CF0097D236 /* TrendingCollectionViewController.swift */,
-				A6243A9420865A8F00BBD173 /* ViewController.swift */,
-				A6243A9920865A9000BBD173 /* Assets.xcassets */,
-				A6243A9B20865A9000BBD173 /* LaunchScreen.storyboard */,
-				A6243A9620865A8F00BBD173 /* Main.storyboard */,
 			);
-			path = "Trip Plan";
+			path = "Storyboard View";
+			sourceTree = "<group>";
+		};
+		A68D1BF52104454600E0CCDF /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				A6B9B58C208C01F5003C4E86 /* CategoryDownload.swift */,
+				A6B9B590208C0783003C4E86 /* CategoryItemDownload.swift */,
+				A66C148A209440CA0021FF63 /* CommentDownload.swift */,
+				A65700EB2096010C00F271B6 /* CommentPosting.swift */,
+				A65922562096E20D00F16E32 /* deletePost.swift */,
+				A6E41EDB208D3F4700207E5D /* LoginActionModel.swift */,
+				A669B18F209616940055A65D /* regAction.swift */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		A68D1BF6210445A200E0CCDF /* Custom View */ = {
+			isa = PBXGroup;
+			children = (
+				A663EBF420FDE0FC002A079E /* Menu.swift */,
+			);
+			path = "Custom View";
+			sourceTree = "<group>";
+		};
+		A68D1BF7210445C900E0CCDF /* Storboard Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A628FE3C2102F467001B008C /* CommentCollectionViewCell.swift */,
+				A69243CA20B182F90097D236 /* TrendingCell.swift */,
+			);
+			path = "Storboard Cell";
+			sourceTree = "<group>";
+		};
+		A68D1BF8210445F800E0CCDF /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				A6E41ED9208D329900207E5D /* networkTest.swift */,
+				A66C93ED208D645E00D3A1A3 /* Session.swift */,
+				A61CA352208FDFBF00BC544D /* SQLite.swift */,
+			);
+			path = Class;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,7 +310,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6243AA920865D0700BBD173 /* ArticleModel.swift in Sources */,
-				A6243A9520865A8F00BBD173 /* ViewController.swift in Sources */,
 				A65922572096E20D00F16E32 /* deletePost.swift in Sources */,
 				A6B9B591208C0783003C4E86 /* CategoryItemDownload.swift in Sources */,
 				A628FE3D2102F467001B008C /* CommentCollectionViewCell.swift in Sources */,
@@ -278,12 +322,12 @@
 				A6B9B58B208BFC9F003C4E86 /* CategoryModel.swift in Sources */,
 				A6B1195F208BD691003DB16E /* CategoryViewController.swift in Sources */,
 				A60F506320901B000042F417 /* AccountDetailViewController.swift in Sources */,
-				A60F5065209058710042F417 /* SettingViewController.swift in Sources */,
 				A6B9B599208D10B1003C4E86 /* SearchViewController.swift in Sources */,
 				A66C93F0208D6BD700D3A1A3 /* LoginViewController.swift in Sources */,
 				A6F245882096724E0010236E /* postEditViewController.swift in Sources */,
 				A66C93EB208D4DD600D3A1A3 /* initNaviController.swift in Sources */,
 				A6F2458620965BE80010236E /* MapViewController.swift in Sources */,
+				A68D1BFC2104476A00E0CCDF /* ViewController.swift in Sources */,
 				A6E41EDC208D3F4700207E5D /* LoginActionModel.swift in Sources */,
 				A66C1489209396D70021FF63 /* CommentModel.swift in Sources */,
 				A6B9B597208D0C1D003C4E86 /* LoginModel.swift in Sources */,

@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let searchVC = storyboard.instantiateViewController(withIdentifier: "NaviSearch") as! UINavigationController
         
-        let calcVc = storyboard.instantiateViewController(withIdentifier: "ViewController")
+//        let calcVc = storyboard.instantiateViewController(withIdentifier: "ViewController")
         
         if shortcutItem.type == "net.scarletsc.Trip-Plan.Trending" {
             
