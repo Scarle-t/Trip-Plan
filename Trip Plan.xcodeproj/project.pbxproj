@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A60F506320901B000042F417 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60F506220901B000042F417 /* AccountDetailViewController.swift */; };
 		A61CA350208FDD3E00BC544D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A61CA34F208FDD3E00BC544D /* libsqlite3.tbd */; };
-		A61CA353208FDFBF00BC544D /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61CA352208FDFBF00BC544D /* SQLite.swift */; };
 		A6243A9320865A8F00BBD173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6243A9220865A8F00BBD173 /* AppDelegate.swift */; };
 		A6243A9820865A8F00BBD173 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6243A9620865A8F00BBD173 /* Main.storyboard */; };
 		A6243A9A20865A9000BBD173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6243A9920865A9000BBD173 /* Assets.xcassets */; };
@@ -29,7 +28,6 @@
 		A66C93EA208D4DD600D3A1A3 /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C93E7208D4DD500D3A1A3 /* InitViewController.swift */; };
 		A66C93EB208D4DD600D3A1A3 /* initNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C93E8208D4DD500D3A1A3 /* initNaviController.swift */; };
 		A66C93EC208D4DD600D3A1A3 /* initTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C93E9208D4DD600D3A1A3 /* initTabBarController.swift */; };
-		A66C93EE208D645E00D3A1A3 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C93ED208D645E00D3A1A3 /* Session.swift */; };
 		A66C93F0208D6BD700D3A1A3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C93EF208D6BD700D3A1A3 /* LoginViewController.swift */; };
 		A68D1BFC2104476A00E0CCDF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68D1BFB2104476A00E0CCDF /* ViewController.swift */; };
 		A69243C920B182CF0097D236 /* TrendingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69243C820B182CF0097D236 /* TrendingCollectionViewController.swift */; };
@@ -43,6 +41,9 @@
 		A6B9B595208CF0AF003C4E86 /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B9B594208CF0AF003C4E86 /* PostingViewController.swift */; };
 		A6B9B597208D0C1D003C4E86 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B9B596208D0C1D003C4E86 /* LoginModel.swift */; };
 		A6B9B599208D10B1003C4E86 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B9B598208D10B1003C4E86 /* SearchViewController.swift */; };
+		A6DB1D142109845F009A269F /* SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61CA352208FDFBF00BC544D /* SQLite.swift */; };
+		A6DB1D1521098468009A269F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C93ED208D645E00D3A1A3 /* Session.swift */; };
+		A6DB1D17210988D5009A269F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DB1D16210988D5009A269F /* ProfileViewController.swift */; };
 		A6E41ED8208D2B6B00207E5D /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E41ED7208D2B6B00207E5D /* AccountViewController.swift */; };
 		A6E41EDA208D329900207E5D /* networkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E41ED9208D329900207E5D /* networkTest.swift */; };
 		A6E41EDC208D3F4700207E5D /* LoginActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E41EDB208D3F4700207E5D /* LoginActionModel.swift */; };
@@ -91,6 +92,7 @@
 		A6B9B594208CF0AF003C4E86 /* PostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
 		A6B9B596208D0C1D003C4E86 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		A6B9B598208D10B1003C4E86 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A6DB1D16210988D5009A269F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A6E41ED7208D2B6B00207E5D /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		A6E41ED9208D329900207E5D /* networkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = networkTest.swift; sourceTree = "<group>"; };
 		A6E41EDB208D3F4700207E5D /* LoginActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginActionModel.swift; sourceTree = "<group>"; };
@@ -161,7 +163,6 @@
 				A6243AA820865D0700BBD173 /* ArticleModel.swift */,
 				A6B9B58A208BFC9F003C4E86 /* CategoryModel.swift */,
 				A66C1488209396D70021FF63 /* CommentModel.swift */,
-				A6243AA620865CFB00BBD173 /* HomeModel.swift */,
 				A6B9B596208D0C1D003C4E86 /* LoginModel.swift */,
 				A62CD5F12092707000E34230 /* PostingModel.swift */,
 			);
@@ -188,6 +189,7 @@
 				A669B18D209611260055A65D /* RegisterViewController.swift */,
 				A6B9B598208D10B1003C4E86 /* SearchViewController.swift */,
 				A69243C820B182CF0097D236 /* TrendingCollectionViewController.swift */,
+				A6DB1D16210988D5009A269F /* ProfileViewController.swift */,
 			);
 			path = "Storyboard View";
 			sourceTree = "<group>";
@@ -195,6 +197,7 @@
 		A68D1BF52104454600E0CCDF /* Action */ = {
 			isa = PBXGroup;
 			children = (
+				A6243AA620865CFB00BBD173 /* HomeModel.swift */,
 				A6B9B58C208C01F5003C4E86 /* CategoryDownload.swift */,
 				A6B9B590208C0783003C4E86 /* CategoryItemDownload.swift */,
 				A66C148A209440CA0021FF63 /* CommentDownload.swift */,
@@ -309,6 +312,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6DB1D1521098468009A269F /* Session.swift in Sources */,
+				A6DB1D142109845F009A269F /* SQLite.swift in Sources */,
 				A6243AA920865D0700BBD173 /* ArticleModel.swift in Sources */,
 				A65922572096E20D00F16E32 /* deletePost.swift in Sources */,
 				A6B9B591208C0783003C4E86 /* CategoryItemDownload.swift in Sources */,
@@ -334,11 +339,10 @@
 				A69243C920B182CF0097D236 /* TrendingCollectionViewController.swift in Sources */,
 				A66C93EC208D4DD600D3A1A3 /* initTabBarController.swift in Sources */,
 				A66C148B209440CA0021FF63 /* CommentDownload.swift in Sources */,
-				A66C93EE208D645E00D3A1A3 /* Session.swift in Sources */,
 				A669B18E209611260055A65D /* RegisterViewController.swift in Sources */,
+				A6DB1D17210988D5009A269F /* ProfileViewController.swift in Sources */,
 				A663EBF520FDE0FC002A079E /* Menu.swift in Sources */,
 				A6B9B58F208C05D0003C4E86 /* CategoryItemController.swift in Sources */,
-				A61CA353208FDFBF00BC544D /* SQLite.swift in Sources */,
 				A65700EC2096010C00F271B6 /* CommentPosting.swift in Sources */,
 				A6E41ED8208D2B6B00207E5D /* AccountViewController.swift in Sources */,
 				A66C93EA208D4DD600D3A1A3 /* InitViewController.swift in Sources */,

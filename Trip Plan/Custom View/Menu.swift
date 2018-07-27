@@ -17,7 +17,7 @@ class Menu: NSObject, UITableViewDelegate, UITableViewDataSource, UIGestureRecog
     let section = UITableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .grouped)
     let closeBtn = UIButton()
     
-    var settingPanel = ["Account Settings", "Manage Posts"]
+    var settingPanel = [String]()
     var loginArray = Session.sharedInstance.loadArray()
     var loginModel: LoginModel?
     var db :SQLiteConnect?
@@ -77,6 +77,13 @@ class Menu: NSObject, UITableViewDelegate, UITableViewDataSource, UIGestureRecog
                     
                     parent?.present(tabViewController, animated: true, completion: nil)
                     
+                }
+            case 2:
+                dismiss()
+                if let tabViewController = parent?.storyboard?.instantiateViewController(withIdentifier: "ProfileView") as? ProfileViewController{
+                    tabViewController.userIcon = userImage.image
+                    tabViewController.userName = userName.text
+                    parent?.present(tabViewController, animated: true, completion: nil)
                 }
             default:
                 break
@@ -210,7 +217,7 @@ class Menu: NSObject, UITableViewDelegate, UITableViewDataSource, UIGestureRecog
                 
             }
             
-            settingPanel = ["Account Settings", "Manage Posts"]
+            settingPanel = ["Account Settings", "Manage Posts", "Profile"]
             
             section.delegate = self
             section.dataSource = self
