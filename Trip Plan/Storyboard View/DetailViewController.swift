@@ -10,7 +10,20 @@ import Foundation
 import UIKit
 import MapKit
 
-class DetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CommentDownloadProtocol {
+class DetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, CommentDownloadProtocol, CommentPostingProtocol {
+    
+    func posted(status: Bool) {
+        if status{
+            cmt.delegate = self
+            if let id = selectedArticle?.Article_ID {
+                cmt.urlPath = "https://triplan.scarletsc.net/iOS/comments.php?id=\(id)"
+            }
+            cmt.downloadItems()
+            
+            commentList.reloadData()
+            
+        }
+    }
     
     func itemsDownloaded(items: NSArray) {
         feedComments = items
@@ -40,6 +53,10 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         return myCell
         
     }
+    
+    let postCmt = CommentPosting()
+    
+    let cmt = CommentDownload()
     
     var feedComments: NSArray = NSArray()
     
@@ -131,6 +148,12 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
             UIView.animate(withDuration: 0.3) {
                 self.tabBarController?.tabBar.alpha = 1
             }
+            cmt.delegate = self
+            if let id = selectedArticle?.Article_ID {
+                cmt.urlPath = "https://triplan.scarletsc.net/iOS/comments.php?id=\(id)"
+            }
+            cmt.downloadItems()
+            commentList.reloadData()
             
         default:
             break
@@ -138,6 +161,43 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     }
     
+    @IBOutlet weak var txtCmt: UITextField!
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        guard let postID = selectedArticle?.Article_ID else {return false}
+        guard let userID = loginModel?.User_ID else {return false}
+        guard let cmt = txtCmt.text else {return false}
+        
+        postCmt.urlPath = "https://triplan.scarletsc.net/iOS/postCmt.php?postID=\(postID)&id=\(userID)&cmt=\(cmt)"
+        postCmt.downloadItems()
+        
+        textField.text = nil
+        
+        textField.resignFirstResponder()
+        
+        self.cmt.delegate = self
+        if let id = selectedArticle?.Article_ID {
+            self.cmt.urlPath = "https://triplan.scarletsc.net/iOS/comments.php?id=\(id)"
+        }
+        self.cmt.downloadItems()
+        
+        commentList.reloadData()
+        
+        return false
+        
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        cmt.delegate = self
+        if let id = selectedArticle?.Article_ID {
+            cmt.urlPath = "https://triplan.scarletsc.net/iOS/comments.php?id=\(id)"
+        }
+        cmt.downloadItems()
+        
+        commentList.reloadData()
+        
+        return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,12 +206,17 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         commentList.delegate = self
         commentList.dataSource = self
         
-        let cmt = CommentDownload()
+        txtCmt.delegate = self
+        
+        
+        
         cmt.delegate = self
         if let id = selectedArticle?.Article_ID {
             cmt.urlPath = "https://triplan.scarletsc.net/iOS/comments.php?id=\(id)"
         }
         cmt.downloadItems()
+        
+        postCmt.delegate = self
         
         let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 22.17, longitude: 114.09)
         let span = MKCoordinateSpanMake(0.01, 0.01)
@@ -188,6 +253,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
         self.title = self.selectedArticle!.Title 
         self.navBar.title = self.selectedArticle!.Title
@@ -202,6 +268,12 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         
         loginModel = Session.sharedInstance.loadDatas()
+        
+        if !(loginModel?.isLoggedIn())!{
+            
+            txtCmt.isEnabled = false
+            
+        }
         
         commentList.reloadData()
         
