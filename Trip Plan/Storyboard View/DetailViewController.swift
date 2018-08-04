@@ -98,18 +98,40 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
             commentView.isHidden = true
             controlSep.effect = UIBlurEffect(style: .light)
             controls.tintColor = self.view.tintColor
+            self.tabBarController?.tabBar.barStyle = .default
+            
+            UIView.animate(withDuration: 0.3) {
+                self.tabBarController?.tabBar.alpha = 1
+            }
+            
         case 1:
             mapsView.isHidden = false
             articleView.isHidden = true
             commentView.isHidden = true
             controlSep.effect = segBlurView.effect
             controls.tintColor = mapSeg.tintColor
+            if mapView.mapType == .hybrid{
+                self.tabBarController?.tabBar.barStyle = .black
+            }else{
+                self.tabBarController?.tabBar.barStyle = .default
+            }
+            
+            UIView.animate(withDuration: 0.3) {
+                self.tabBarController?.tabBar.alpha = 0
+            }
+            
         case 2:
             mapsView.isHidden = true
             articleView.isHidden = true
             commentView.isHidden = false
             controlSep.effect = UIBlurEffect(style: .light)
             controls.tintColor = self.view.tintColor
+            self.tabBarController?.tabBar.barStyle = .default
+            
+            UIView.animate(withDuration: 0.3) {
+                self.tabBarController?.tabBar.alpha = 1
+            }
+            
         default:
             break
         }
@@ -226,6 +248,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
             mapSeg.tintColor = self.view.tintColor
             controls.tintColor = mapSeg.tintColor
             openMapsBtn.setImage(UIImage(imageLiteralResourceName: "Share"), for: .normal)
+            self.tabBarController?.tabBar.barStyle = .default
         case 1:
             mapView.mapType = .hybrid
             segBlurView.effect = UIBlurEffect(style: .dark)
@@ -233,6 +256,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
             mapSeg.tintColor = UIColor.white
             controls.tintColor = mapSeg.tintColor
             openMapsBtn.setImage(UIImage(imageLiteralResourceName: "Share_white"), for: .normal)
+            self.tabBarController?.tabBar.barStyle = .black
         default:
             break
         }

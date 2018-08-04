@@ -18,6 +18,12 @@ class PostingViewController: UIViewController, UITextViewDelegate, UIPickerViewD
                 switch action.style{
                 case .default:
                     print("default")
+                    if let parent = self.source{
+                        parent.urlPath = "https://triplan.scarletsc.net/iOS/main.php"
+                        parent.downloadItems()
+                        parent.listTableView.reloadData()
+                    }
+                    
                     self.dismiss(animated: true, completion: {()->Void in
                         
                     });
@@ -35,6 +41,7 @@ class PostingViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         }
     }
     
+    var source: TrendingCollectionViewController?
     
     var category : NSMutableArray = ["Select Category ..."]
     

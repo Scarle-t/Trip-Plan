@@ -346,8 +346,35 @@ class TrendingCollectionViewController: UIViewController, UICollectionViewDelega
         
         myCell.title.text = item.Title
         
+        let colorTop = UIColor.clear.cgColor
+        let colorBottom = UIColor(white: 0, alpha: 0.7).cgColor
+        
+        let gl = CAGradientLayer()
+        
+        gl.colors = [colorTop, colorBottom]
+        gl.locations = [0.65, 1.0]
+        
+        myCell.dimView.backgroundColor = UIColor.clear
+        gl.frame = myCell.dimView.frame
+        
+        myCell.dimView.layer.insertSublayer(gl, at: 0)
+        
         return myCell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cellIdentifier: String = "BasicCell"
+        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as! TrendingCell
+        
+        myCell.dimView.layer.insertSublayer(CALayer(), at: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cellIdentifier: String = "BasicCell"
+        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as! TrendingCell
+        
+        myCell.dimView.layer.insertSublayer(CALayer(), at: 0)
     }
     
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
@@ -489,6 +516,16 @@ class TrendingCollectionViewController: UIViewController, UICollectionViewDelega
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.urlPath = "https://triplan.scarletsc.net/iOS/main.php"
+        self.downloadItems()
+        self.listTableView.reloadData()
+        self.tabBarController?.tabBar.barStyle = .default
+        self.tabBarController?.tabBar.alpha = 1
+        
+    }
     
     @IBAction func menuBarBtn(_ sender: UIBarButtonItem) {
         
@@ -537,7 +574,7 @@ class TrendingCollectionViewController: UIViewController, UICollectionViewDelega
             // detail view controller loads, it can access that property to get the feeditem obj
             self.segueDest = ""
             detailVC.loginModel = loginModel
-            
+            detailVC.source = self
         }
     }
 

@@ -66,24 +66,18 @@ class Menu: NSObject, UITableViewDelegate, UITableViewDataSource, UIGestureRecog
             switch indexPath.row{
             case 0:
                 dismiss()
-                if let tabViewController = parent?.storyboard?.instantiateViewController(withIdentifier: "Account") as? UINavigationController {
+                if let nav = parent?.storyboard?.instantiateViewController(withIdentifier: "profile") as? UINavigationController, let view = nav.viewControllers.first as? ProfileViewController{
                     
-                    parent?.present(tabViewController, animated: true, completion: nil)
-                    
+                    view.userIcon = userImage.image
+                    view.userName = userName.text
+                    view.userID = Session.sharedInstance.loadDatas().User_ID
+                    parent?.present(nav, animated: true, completion: nil)
                 }
             case 1:
                 dismiss()
-                if let tabViewController = parent?.storyboard?.instantiateViewController(withIdentifier: "editPost") as? UINavigationController {
-                    
-                    parent?.present(tabViewController, animated: true, completion: nil)
-                    
-                }
-            case 2:
-                dismiss()
-                if let tabViewController = parent?.storyboard?.instantiateViewController(withIdentifier: "ProfileView") as? ProfileViewController{
-                    tabViewController.userIcon = userImage.image
-                    tabViewController.userName = userName.text
-                    parent?.present(tabViewController, animated: true, completion: nil)
+                    if let tabViewController = parent?.storyboard?.instantiateViewController(withIdentifier: "Account") as? UINavigationController {
+                        
+                        parent?.present(tabViewController, animated: true, completion: nil)
                 }
             default:
                 break
@@ -217,7 +211,7 @@ class Menu: NSObject, UITableViewDelegate, UITableViewDataSource, UIGestureRecog
                 
             }
             
-            settingPanel = ["Account Settings", "Manage Posts", "Profile"]
+            settingPanel = ["Profile", "Account Settings"]
             
             section.delegate = self
             section.dataSource = self

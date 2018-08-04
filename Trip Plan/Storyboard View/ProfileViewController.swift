@@ -8,16 +8,36 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, HomeModelProtocol {
     
+    let imgCache = NSCache<AnyObject, AnyObject>()
+    let article = HomeModel()
+    
+    var userID: String?
     var userIcon: UIImage?
     var userName: String?
-    let layout = UICollectionViewFlowLayout()
+    var userDesc: String?
+    var userDate: String?
+    var feedItems: NSArray = NSArray()
     
     @IBOutlet weak var list: UICollectionView!
     
+    func itemsDownloaded(items: NSArray) {
+        
+        feedItems = items
+        list.reloadData()
+        
+    }
+    
+    func postDownloaded(items: NSArray) {
+        
+        feedItems = items
+        list.reloadData()
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return feedItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -25,13 +45,52 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cellIdentifier: String = "BasicCell"
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as! TrendingCell
         
-        myCell.title.text = "test"
+        let item = feedItems[indexPath.row] as! ArticleModel
         
-        myCell.cover.image = UIImage(imageLiteralResourceName: "Icon")
-        myCell.cover.contentMode = .scaleAspectFit
+        myCell.title.text = item.Title
+        
+        if let photo_path = item.media_path{
+            
+            let urlString = URL(string: "\(photo_path)")
+            
+            let url = URL(string: "\(photo_path)")
+            
+            if let imageFromCache = self.imgCache.object(forKey: url as AnyObject) as? UIImage{
+                
+                myCell.cover.image = imageFromCache
+                
+            }else{
+                
+                getDataFromUrl(url: url!) { data, response, error in
+                    guard let imgData = data, error == nil else { return }
+                    print(url!)
+                    print("Download Finished")
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        
+                        //tdoll.photo = UIImage(data: imgData)
+                        
+                        let imgToCache = UIImage(data: imgData)
+                        
+                        if urlString == url{
+                            
+                            myCell.cover.image = imgToCache
+                            
+                        }
+                        
+                        if let imginCache = imgToCache{
+                            self.imgCache.setObject(imginCache, forKey: urlString as AnyObject)
+                        }
+                        
+                    })
+                }
+            }
+        }
         
         myCell.layer.borderWidth = 1
         myCell.layer.borderColor = UIColor.lightGray.cgColor
+        
+        myCell.postID = item.Article_ID
+        myCell.parent = self
         
         return myCell
         
@@ -43,33 +102,45 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        var reusableView = UICollectionReusableView()
+        let colorTop = UIColor.clear.cgColor
+        let colorBottom = UIColor(white: 0, alpha: 0.5).cgColor
         
-        let image = UIImageView()
-        let username = UILabel()
+        let gl = CAGradientLayer()
+        
+        gl.colors = [colorTop, colorBottom]
+        gl.locations = [0.3, 1.0]
+        
+        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! ProfileCollectionReusableView
         
         if kind == UICollectionElementKindSectionHeader {
             
-            reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath)
+            reusableView.profilePic.image = userIcon
+            reusableView.profileName.text = userName!
+            reusableView.profileDesc.text = userDesc!
+            reusableView.profileDate.text = "Member since " + userDate!
             
-            reusableView.backgroundColor = UIColor.white
-            image.image = userIcon
-            username.text = userName!
-            username.textAlignment = .center
-            
-            if let window = UIApplication.shared.keyWindow{
-                image.frame = CGRect(x: (window.frame.width / 2) - 60, y: 5, width: 120, height: 120)
+            if let frame = UIApplication.shared.keyWindow?.frame{
                 
-                username.frame = CGRect(x: image.frame.minX, y: image.frame.maxY + 10, width: image.frame.width, height: 30)
+                gl.frame = CGRect(x: 0, y: 0, width: frame.width, height: reusableView.profilePic.frame.height)
+                
             }
+            
+            reusableView.profilePic.layer.insertSublayer(gl, at: 0)
             
         }
         
-        reusableView.addSubview(image)
-        reusableView.addSubview(username)
-        
         return reusableView
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
+        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! ProfileCollectionReusableView
+        
+        if elementKind == UICollectionElementKindSectionHeader {
+         
+            reusableView.profilePic.layer.insertSublayer(CALayer(), at: 0)
+            
+        }
     }
 
     override func viewDidLoad() {
@@ -79,12 +150,21 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         list.delegate = self
         list.dataSource = self
         
-        layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.size.width, height: 170)
+        userDesc = Session.sharedInstance.loadDatas().Description
+        userDate = Session.sharedInstance.loadDatas().join_date
         
-//        list.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")
+        article.delegate = self
+        guard let id = userID else {return}
+        article.urlPath = "https://triplan.scarletsc.net/iOS/profile.php?id=\(id)"
+        article.downloadItems()
+        list.reloadData()
         
-//        list = UICollectionView(frame: list.frame, collectionViewLayout: layout)
-        
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
     }
     
     @IBAction func dismis(_ sender: UIBarButtonItem) {
@@ -93,6 +173,26 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get reference to the destination view controller
+        
+        if let sender = sender as? UICollectionViewCell{
+            let indexPath = self.list.indexPath(for: sender)
+            
+            let selectedArticle = feedItems[(indexPath?.row)!] as! ArticleModel
+            
+            let detailVC  = segue.destination as! DetailViewController
+            // Set the property to the selected location so when the view for
+            // detail view controller loads, it can access that property to get the feeditem obj
+            
+            detailVC.selectedArticle = selectedArticle
+            
+        }
+        
+        
+        
+    }
     
 
     /*

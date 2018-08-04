@@ -49,6 +49,7 @@
 		A6E41EDC208D3F4700207E5D /* LoginActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E41EDB208D3F4700207E5D /* LoginActionModel.swift */; };
 		A6F2458620965BE80010236E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F2458520965BE80010236E /* MapViewController.swift */; };
 		A6F245882096724E0010236E /* postEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F245872096724E0010236E /* postEditViewController.swift */; };
+		A6FB9497210F71100071D642 /* ProfileCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FB9496210F71100071D642 /* ProfileCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		A6E41EDB208D3F4700207E5D /* LoginActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginActionModel.swift; sourceTree = "<group>"; };
 		A6F2458520965BE80010236E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A6F245872096724E0010236E /* postEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postEditViewController.swift; sourceTree = "<group>"; };
+		A6FB9496210F71100071D642 /* ProfileCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 			children = (
 				A628FE3C2102F467001B008C /* CommentCollectionViewCell.swift */,
 				A69243CA20B182F90097D236 /* TrendingCell.swift */,
+				A6FB9496210F71100071D642 /* ProfileCollectionReusableView.swift */,
 			);
 			path = "Storboard Cell";
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				A6B9B597208D0C1D003C4E86 /* LoginModel.swift in Sources */,
 				A69243C920B182CF0097D236 /* TrendingCollectionViewController.swift in Sources */,
 				A66C93EC208D4DD600D3A1A3 /* initTabBarController.swift in Sources */,
+				A6FB9497210F71100071D642 /* ProfileCollectionReusableView.swift in Sources */,
 				A66C148B209440CA0021FF63 /* CommentDownload.swift in Sources */,
 				A669B18E209611260055A65D /* RegisterViewController.swift in Sources */,
 				A6DB1D17210988D5009A269F /* ProfileViewController.swift in Sources */,
@@ -497,6 +501,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7WC44F9Y8F;
 				INFOPLIST_FILE = "Trip Plan/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -505,7 +510,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Trip Plan/sqlite.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -517,6 +522,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7WC44F9Y8F;
 				INFOPLIST_FILE = "Trip Plan/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -525,7 +531,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Trip Plan/sqlite.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
