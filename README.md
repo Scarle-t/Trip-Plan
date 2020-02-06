@@ -1,8 +1,9 @@
 # Trip Plan
+![](https://i.imgur.com/yEUNJNI.png)
 This Final Year Project is called Trip Plan, a social networking app for travel lovers.
 
 Associate of Science in Information Systems Development, Community College of City University
-sdi
+
 # Description
 This project is completed with a team of 4, while I was in charge of the iOS app, website and back-end setup.
 Original idea is to create a platform for people to share interesting places with each other, just like Facebook but for travellers.
