@@ -166,7 +166,6 @@
 				A6B9B58A208BFC9F003C4E86 /* CategoryModel.swift */,
 				A66C1488209396D70021FF63 /* CommentModel.swift */,
 				A6B9B596208D0C1D003C4E86 /* LoginModel.swift */,
-				A62CD5F12092707000E34230 /* PostingModel.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -207,6 +206,7 @@
 				A65922562096E20D00F16E32 /* deletePost.swift */,
 				A6E41EDB208D3F4700207E5D /* LoginActionModel.swift */,
 				A669B18F209616940055A65D /* regAction.swift */,
+				A62CD5F12092707000E34230 /* PostingModel.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -271,6 +271,7 @@
 				TargetAttributes = {
 					A6243A8E20865A8E00BBD173 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1110;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -508,8 +509,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.scarletsc.Trip-Plan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Trip Plan/sqlite.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -529,8 +531,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.scarletsc.Trip-Plan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Trip Plan/sqlite.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -27,6 +27,7 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func itemsDownloaded(items: NSArray) {
         feedComments = items
+        controls.setTitle("\(feedComments.count) Comments", forSegmentAt: 2)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -69,9 +70,9 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var commentList: UICollectionView!
     
     var annotation:MKAnnotation!
-    var localSearchRequest:MKLocalSearchRequest!
+    var localSearchRequest:MKLocalSearch.Request!
     var localSearch:MKLocalSearch!
-    var localSearchResponse:MKLocalSearchResponse!
+    var localSearchResponse:MKLocalSearch.Response!
     var error:NSError!
     var pointAnnotation:MKPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
@@ -167,28 +168,25 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         guard let postID = selectedArticle?.Article_ID else {return false}
         guard let userID = loginModel?.User_ID else {return false}
-        guard let cmt = txtCmt.text else {return false}
+        guard var cmtTxt = txtCmt.text else {return false}
         
-        postCmt.urlPath = "https://triplan.scarletsc.net/iOS/postCmt.php?postID=\(postID)&id=\(userID)&cmt=\(cmt)"
+        cmtTxt = cmtTxt.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        
+        postCmt.urlPath = "https://triplan.scarletsc.net/iOS/postCmt.php?postID=\(postID)&id=\(userID)&cmt=\(cmtTxt)"
         postCmt.downloadItems()
         
-        textField.text = nil
-        
-        textField.resignFirstResponder()
-        
-        self.cmt.delegate = self
         if let id = selectedArticle?.Article_ID {
             self.cmt.urlPath = "https://triplan.scarletsc.net/iOS/comments.php?id=\(id)"
         }
-        self.cmt.downloadItems()
-        
+        cmt.downloadItems()
         commentList.reloadData()
+        textField.text = nil
+        textField.resignFirstResponder()
         
         return false
         
     }
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        cmt.delegate = self
         if let id = selectedArticle?.Article_ID {
             cmt.urlPath = "https://triplan.scarletsc.net/iOS/comments.php?id=\(id)"
         }
@@ -197,6 +195,10 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         commentList.reloadData()
         
         return true
+    }
+    
+    @objc func dismissCmt(){
+        view.endEditing(true)
     }
 
     override func viewDidLoad() {
@@ -208,7 +210,15 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         txtCmt.delegate = self
         
+        let toolBar = UIToolbar()
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(dismissCmt))
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.sizeToFit()
+        toolBar.setItems([cancelButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
         
+        txtCmt.inputAccessoryView = toolBar
         
         cmt.delegate = self
         if let id = selectedArticle?.Article_ID {
@@ -219,8 +229,8 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
         postCmt.delegate = self
         
         let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 22.17, longitude: 114.09)
-        let span = MKCoordinateSpanMake(0.01, 0.01)
-        let region = MKCoordinateRegionMake(coordinate, span)
+        let span = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion.init(center: coordinate, span: span)
         self.mapView.setRegion(region, animated: true)
         
         if self.mapView.annotations.count != 0{
@@ -228,14 +238,14 @@ class DetailViewController: UIViewController, UICollectionViewDelegate, UICollec
             self.mapView.removeAnnotation(annotation)
         }
         
-        localSearchRequest = MKLocalSearchRequest()
+        localSearchRequest = MKLocalSearch.Request()
         localSearchRequest.naturalLanguageQuery = selectedArticle?.address
         localSearch = MKLocalSearch(request: localSearchRequest)
         localSearch.start { (localSearchResponse, error) -> Void in
             
             if localSearchResponse == nil{
-                let alertController = UIAlertController(title: nil, message: "Place Not Found", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                let alertController = UIAlertController(title: nil, message: "Place Not Found", preferredStyle: UIAlertController.Style.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
                 return
             }

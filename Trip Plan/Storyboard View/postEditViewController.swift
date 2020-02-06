@@ -14,7 +14,7 @@ class postEditViewController: UIViewController, UITableViewDelegate, UITableView
         
         if status{
             
-            let alert = UIAlertController(title: "Deleted", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Deleted", message: "", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
                 switch action.style{
@@ -36,7 +36,7 @@ class postEditViewController: UIViewController, UITableViewDelegate, UITableView
             self.present(alert, animated: true, completion: nil)
             
         }else{
-            let alert = UIAlertController(title: "Error", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Error", message: "", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
                 switch action.style{
@@ -79,7 +79,7 @@ class postEditViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: "", preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
             switch action.style{

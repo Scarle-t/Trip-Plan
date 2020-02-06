@@ -121,6 +121,11 @@ class CategoryItemDownload: NSObject, URLSessionDataDelegate {
                 
             }
             
+            if let icon = jsonElement["icon"] as? String
+            {
+                article.icon = icon
+            }
+            
             if let join_date = jsonElement["join_date"] as? String
             {
                 

@@ -28,7 +28,7 @@ class TrendingCell: UICollectionViewCell, deleteProtocol {
         
         if status{
             
-            let alert = UIAlertController(title: "Deleted", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Deleted", message: "", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
@@ -51,7 +51,7 @@ class TrendingCell: UICollectionViewCell, deleteProtocol {
             source.present(alert, animated: true, completion: nil)
             
         }else{
-            let alert = UIAlertController(title: "Error", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Error", message: "", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
                 switch action.style{
@@ -77,7 +77,7 @@ class TrendingCell: UICollectionViewCell, deleteProtocol {
         
         if let source = parent, let post = postID{
             
-            let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: "", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
                 switch action.style{

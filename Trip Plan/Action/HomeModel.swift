@@ -91,6 +91,10 @@ class HomeModel: NSObject, URLSessionDataDelegate {
             {
                 article.Allow_Public = "\(Allow_Public)"
             }
+            if let icon = jsonElement["icon"] as? String
+            {
+                article.icon = icon
+            }
             if let join_date = jsonElement["join_date"] as? String
             {
                 article.join_date = join_date

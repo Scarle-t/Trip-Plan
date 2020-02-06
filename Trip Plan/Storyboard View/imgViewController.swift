@@ -33,6 +33,10 @@ class imgViewController: UIViewController, UIScrollViewDelegate {
         super.viewWillDisappear(animated)
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     @IBAction func btnDone(_ sender: UIButton) {
         AppDelegate.AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         self.dismiss(animated: true, completion: nil)

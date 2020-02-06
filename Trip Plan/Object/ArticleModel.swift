@@ -24,6 +24,7 @@ class ArticleModel: NSObject {
     var Hobby : String?
     var dob : String?
     var Allow_Public : String?
+    var icon : String?
     var join_date : String?
     var Article_ID : String?
     var Title : String?
@@ -43,7 +44,7 @@ class ArticleModel: NSObject {
     
     //construct with @name, @address, @latitude, and @longitude parameters
     
-    init(User_ID: String, S_Name: String, G_Name : String ,M_Name : String ,phone : String ,Area_Code : String ,gender : String ,Description : String ,Hobby : String ,dob : String ,Allow_Public : String ,join_date : String ,Article_ID : String ,Title : String ,Content : String ,type : String ,Timestamp : String ,Post_Date : String ,address : String, media_path: String) {
+    init(User_ID: String, S_Name: String, G_Name : String ,M_Name : String ,phone : String ,Area_Code : String ,gender : String ,Description : String ,Hobby : String ,dob : String ,Allow_Public : String ,icon : String, join_date : String ,Article_ID : String ,Title : String ,Content : String ,type : String ,Timestamp : String ,Post_Date : String ,address : String, media_path: String) {
         
         self.User_ID = User_ID
         self.S_Name = S_Name
@@ -56,6 +57,7 @@ class ArticleModel: NSObject {
         self.Hobby = Hobby
         self.dob = dob
         self.Allow_Public = Allow_Public
+        self.icon = icon
         self.join_date = join_date
         self.Article_ID = Article_ID
         self.Title = Title

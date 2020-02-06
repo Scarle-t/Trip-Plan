@@ -12,9 +12,9 @@ import MapKit
 class MapViewController: UIViewController {
     
     var annotation:MKAnnotation!
-    var localSearchRequest:MKLocalSearchRequest!
+    var localSearchRequest:MKLocalSearch.Request!
     var localSearch:MKLocalSearch!
-    var localSearchResponse:MKLocalSearchResponse!
+    var localSearchResponse:MKLocalSearch.Response!
     var error:NSError!
     var pointAnnotation:MKPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
@@ -28,8 +28,8 @@ class MapViewController: UIViewController {
         
         // Init the zoom level
         let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 22.17, longitude: 114.09)
-        let span = MKCoordinateSpanMake(0.01, 0.01)
-        let region = MKCoordinateRegionMake(coordinate, span)
+        let span = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let region = MKCoordinateRegion.init(center: coordinate, span: span)
         self.mapView.setRegion(region, animated: true)
 
         if self.mapView.annotations.count != 0{
@@ -37,14 +37,14 @@ class MapViewController: UIViewController {
             self.mapView.removeAnnotation(annotation)
         }
         
-        localSearchRequest = MKLocalSearchRequest()
+        localSearchRequest = MKLocalSearch.Request()
         localSearchRequest.naturalLanguageQuery = selectedLocation?.address
         localSearch = MKLocalSearch(request: localSearchRequest)
         localSearch.start { (localSearchResponse, error) -> Void in
             
             if localSearchResponse == nil{
-                let alertController = UIAlertController(title: nil, message: "Place Not Found", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                let alertController = UIAlertController(title: nil, message: "Place Not Found", preferredStyle: UIAlertController.Style.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alertController, animated: true, completion: nil)
                 return
             }

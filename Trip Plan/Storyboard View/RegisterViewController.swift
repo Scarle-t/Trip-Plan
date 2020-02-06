@@ -13,7 +13,7 @@ class RegisterViewController: UIViewController, regActionProtocol {
     func reg(status: String) {
         if status == "true" {
             
-            let alert = UIAlertController(title: "Welcome to Trip Plan!", message: "You can now login", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Welcome to Trip Plan!", message: "You can now login", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
                 case .default:
@@ -34,7 +34,7 @@ class RegisterViewController: UIViewController, regActionProtocol {
         }
         
         if status == "exist"{
-            let alert = UIAlertController(title: "Email already exist.", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Email already exist.", message: "", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
                 switch action.style{
                 case .default:
@@ -88,7 +88,7 @@ class RegisterViewController: UIViewController, regActionProtocol {
                 reg.downloadItems()
                 
             }else{
-                let alert = UIAlertController(title: "Password does not match", message: "Please enter the same Password", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "Password does not match", message: "Please enter the same Password", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
                     switch action.style{
                     case .default:

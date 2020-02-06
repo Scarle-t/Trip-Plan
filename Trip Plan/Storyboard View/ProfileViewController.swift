@@ -92,7 +92,37 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         myCell.postID = item.Article_ID
         myCell.parent = self
         
+        let colorTop = UIColor.clear.cgColor
+        let colorBottom = UIColor(white: 0, alpha: 0.7).cgColor
+        
+        let gl = CAGradientLayer()
+        
+        gl.colors = [colorTop, colorBottom]
+        gl.locations = [0.65, 1.0]
+        
+        gl.frame = myCell.cover.frame
+        
+        if myCell.cover.layer.sublayers?[0] != gl{
+            myCell.cover.layer.insertSublayer(gl, at: 0)
+        }
+        
         return myCell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        let cellIdentifier: String = "BasicCell"
+        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as! TrendingCell
+        myCell.cover.layer.insertSublayer(CALayer(), at: 0)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        let cellIdentifier: String = "BasicCell"
+        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as! TrendingCell
+        myCell.cover.layer.insertSublayer(CALayer(), at: 0)
         
     }
     
@@ -110,9 +140,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         gl.colors = [colorTop, colorBottom]
         gl.locations = [0.3, 1.0]
         
-        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! ProfileCollectionReusableView
+        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! ProfileCollectionReusableView
         
-        if kind == UICollectionElementKindSectionHeader {
+        if kind == UICollectionView.elementKindSectionHeader {
             
             reusableView.profilePic.image = userIcon
             reusableView.profileName.text = userName!
@@ -134,9 +164,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
-        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! ProfileCollectionReusableView
+        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! ProfileCollectionReusableView
         
-        if elementKind == UICollectionElementKindSectionHeader {
+        if elementKind == UICollectionView.elementKindSectionHeader {
          
             reusableView.profilePic.layer.insertSublayer(CALayer(), at: 0)
             
@@ -152,6 +182,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         userDesc = Session.sharedInstance.loadDatas().Description
         userDate = Session.sharedInstance.loadDatas().join_date
+        
+        article.delegate = self
+        guard let id = userID else {return}
+        article.urlPath = "https://triplan.scarletsc.net/iOS/profile.php?id=\(id)"
+        article.downloadItems()
+        list.reloadData()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         article.delegate = self
         guard let id = userID else {return}

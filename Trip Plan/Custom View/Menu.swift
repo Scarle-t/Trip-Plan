@@ -110,7 +110,7 @@ class Menu: NSObject, UITableViewDelegate, UITableViewDataSource, UIGestureRecog
             
             if status {
                 
-                let ask = UIAlertController(title: "Are you sure to logout?", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                let ask = UIAlertController(title: "Are you sure to logout?", message: "", preferredStyle: UIAlertController.Style.alert)
                 ask.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
                     switch action.style{
                     case .default:
@@ -137,7 +137,7 @@ class Menu: NSObject, UITableViewDelegate, UITableViewDataSource, UIGestureRecog
                         
                         self.loginArray.removeAllObjects()
                         self.loginModel?.setStatus(status: false)
-                        let alert = UIAlertController(title: "You have been logged out!", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                        let alert = UIAlertController(title: "You have been logged out!", message: "", preferredStyle: UIAlertController.Style.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { action in
                             switch action.style{
                             case .default:
@@ -179,11 +179,11 @@ class Menu: NSObject, UITableViewDelegate, UITableViewDataSource, UIGestureRecog
             
             if let M_name = loginModel?.M_Name{
                 
-                if let S_name = loginModel?.S_Name, let G_name = loginModel?.G_Name, let id = loginModel?.User_ID{
+                if let S_name = loginModel?.S_Name, let G_name = loginModel?.G_Name, let icon = loginModel?.icon{
                     
                         userName.text = S_name + " " + M_name + " " + G_name
                     
-                    let url = URL(string: "https://triplan.scarletsc.net/img/icon/\(String(describing: id)).jpg")
+                    let url = URL(string: "https://triplan.scarletsc.net/img/icon/\(String(describing: icon))")
                     downloadImage(url: url!) { data, response, error in
                         guard let imgData = data, error == nil else { return }
                         DispatchQueue.main.async(execute: { () -> Void in
@@ -195,11 +195,11 @@ class Menu: NSObject, UITableViewDelegate, UITableViewDataSource, UIGestureRecog
                 
             }else{
                 
-                if let S_name = loginModel?.S_Name, let G_name = loginModel?.G_Name, let id = loginModel?.User_ID{
+                if let S_name = loginModel?.S_Name, let G_name = loginModel?.G_Name, let icon = loginModel?.icon{
                     
                         userName.text = S_name + " " + G_name
                     
-                    let url = URL(string: "https://triplan.scarletsc.net/img/icon/\(String(describing: id)).jpg")
+                    let url = URL(string: "https://triplan.scarletsc.net/img/icon/\(String(describing: icon))")
                     downloadImage(url: url!) { data, response, error in
                         guard let imgData = data, error == nil else { return }
                         DispatchQueue.main.async(execute: { () -> Void in

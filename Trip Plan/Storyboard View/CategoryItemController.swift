@@ -103,7 +103,7 @@ class CategoryItemController: UIViewController, UICollectionViewDelegate, UIColl
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
             #selector(ViewController.handleRefresh(_:)),
-                                 for: UIControlEvents.valueChanged)
+                                 for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.white
         
         return refreshControl
@@ -120,7 +120,7 @@ class CategoryItemController: UIViewController, UICollectionViewDelegate, UIColl
         refreshControl.endRefreshing()
         
         if currentReachabilityStatus == .notReachable {
-            let alert = UIAlertController(title: "Network Error", message: "Network Unavailable. \nFailed to download data.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Network Error", message: "Network Unavailable. \nFailed to download data.", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { action in
                 switch action.style{
@@ -165,7 +165,7 @@ class CategoryItemController: UIViewController, UICollectionViewDelegate, UIColl
         self.listTableView.refreshControl = self.refreshControl
         
         if currentReachabilityStatus == .notReachable {
-            let alert = UIAlertController(title: "Network Error", message: "Network Unavailable. \nFailed to download data.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Network Error", message: "Network Unavailable. \nFailed to download data.", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { action in
                 switch action.style{

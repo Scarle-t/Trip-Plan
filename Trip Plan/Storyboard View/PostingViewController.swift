@@ -13,7 +13,7 @@ class PostingViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     
     func posted(status: Bool) {
         if status {
-            let alert = UIAlertController(title: "Posted", message: "", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Posted", message: "", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
                 case .default:
@@ -81,16 +81,19 @@ class PostingViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self;
-        myPickerController.sourceType =  UIImagePickerControllerSourceType.photoLibrary
+        myPickerController.sourceType =  UIImagePickerController.SourceType.photoLibrary
         self.present(myPickerController, animated: true, completion: nil)
         
     }
     
     @IBOutlet weak var imgPreview: UIImageView!
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
     {
-        let image_data = info[UIImagePickerControllerOriginalImage] as? UIImage
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        let image_data = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
         //let imageData:Data = UIImagePNGRepresentation(image_data!)!
         
         imgPreview.image = image_data
@@ -116,7 +119,7 @@ class PostingViewController: UIViewController, UITextViewDelegate, UIPickerViewD
         
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        let imageData = UIImageJPEGRepresentation(imageView.image!, 1)
+        let imageData = imageView.image!.jpegData(compressionQuality: 1)
         
         if(imageData==nil)  { return; }
         
@@ -249,7 +252,7 @@ class PostingViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     override func viewDidAppear(_ animated: Bool) {
         
         if !(loginModel?.isLoggedIn())! {
-            let alert = UIAlertController(title: "You are not logged in", message: "Please login first", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "You are not logged in", message: "Please login first", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
                 switch action.style{
                 case .default:
@@ -310,7 +313,7 @@ class PostingViewController: UIViewController, UITextViewDelegate, UIPickerViewD
     
     @IBAction func postingCancel(_ sender: UIBarButtonItem) {
         
-        let alert = UIAlertController(title: "Cancel Post", message: "Are you sure you want to cancel?", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Cancel Post", message: "Are you sure you want to cancel?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { action in
             switch action.style{
             case .default:
@@ -393,4 +396,14 @@ extension NSMutableData {
         let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
         append(data!)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

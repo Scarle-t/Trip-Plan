@@ -23,7 +23,7 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, LoginActi
             let name: String = feedItems.S_Name!
         
         
-            let alert = UIAlertController(title: "Welcome \(name)", message: "You are logged in.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Welcome \(name)", message: "You are logged in.", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 switch action.style{
@@ -46,7 +46,7 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, LoginActi
             self.present(alert, animated: true, completion: nil)
             
         }else{
-            let alert = UIAlertController(title: "Cannot Login", message: "Email/ Password incorrect", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Cannot Login", message: "Email/ Password incorrect", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
                 switch action.style{
@@ -154,7 +154,7 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, LoginActi
         
         if email.isEmpty || password.isEmpty {
             
-            let alert = UIAlertController(title: "Cannot Login", message: "Email/ Password cannot be empty!", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Cannot Login", message: "Email/ Password cannot be empty!", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
                 switch action.style{

@@ -31,7 +31,7 @@ class TrendingCollectionViewController: UIViewController, UICollectionViewDelega
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
             #selector(ViewController.handleRefresh(_:)),
-                                 for: UIControlEvents.valueChanged)
+                                 for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.white
         
         return refreshControl
@@ -48,7 +48,7 @@ class TrendingCollectionViewController: UIViewController, UICollectionViewDelega
         refreshControl.endRefreshing()
         
         if currentReachabilityStatus == .notReachable {
-            let alert = UIAlertController(title: "Network Error", message: "Network Unavailable. \nFailed to download data.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Network Error", message: "Network Unavailable. \nFailed to download data.", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { action in
                 switch action.style{
@@ -354,10 +354,12 @@ class TrendingCollectionViewController: UIViewController, UICollectionViewDelega
         gl.colors = [colorTop, colorBottom]
         gl.locations = [0.65, 1.0]
         
-        myCell.dimView.backgroundColor = UIColor.clear
-        gl.frame = myCell.dimView.frame
+        gl.frame = myCell.cover.frame
         
-        myCell.dimView.layer.insertSublayer(gl, at: 0)
+        if myCell.cover.layer.sublayers?[0] != gl{
+            myCell.cover.layer.insertSublayer(gl, at: 0)
+        }
+        
         
         return myCell
         
@@ -367,14 +369,14 @@ class TrendingCollectionViewController: UIViewController, UICollectionViewDelega
         let cellIdentifier: String = "BasicCell"
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as! TrendingCell
         
-        myCell.dimView.layer.insertSublayer(CALayer(), at: 0)
+        myCell.cover.layer.insertSublayer(CALayer(), at: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let cellIdentifier: String = "BasicCell"
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as! TrendingCell
         
-        myCell.dimView.layer.insertSublayer(CALayer(), at: 0)
+        myCell.cover.layer.insertSublayer(CALayer(), at: 0)
     }
     
     func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
@@ -481,7 +483,7 @@ class TrendingCollectionViewController: UIViewController, UICollectionViewDelega
         homeModel.downloadItems()
         
         if currentReachabilityStatus == .notReachable {
-            let alert = UIAlertController(title: "Network Error", message: "Network Unavailable. \nFailed to download data.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "Network Error", message: "Network Unavailable. \nFailed to download data.", preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "Yes", style: .cancel, handler: { action in
                 switch action.style{

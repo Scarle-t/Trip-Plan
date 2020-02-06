@@ -117,6 +117,12 @@ class LoginActionModel: NSObject {
                 }else{
                     loginArray.add("")
                 }
+                if let icon = jsonElement["icon"] as? String{
+                    login.icon = icon
+                    loginArray.add(icon)
+                }else{
+                    loginArray.add("")
+                }
                 if let join_date = jsonElement["join_date"] as? String{
                     login.join_date = join_date
                     loginArray.add(join_date)
@@ -127,7 +133,7 @@ class LoginActionModel: NSObject {
                 
                 if let mydb = db {
                     // insert
-                    let _ = mydb.insert("user", rowInfo: ["User_ID":"'\(loginArray[0])'","S_Name":"'\(loginArray[1])'","G_Name":"'\(loginArray[2])'","M_Name":"'\(loginArray[3])'","phone":"'\(loginArray[4])'","Area_code":"'\(loginArray[5])'","gender":"'\(loginArray[6])'","description":"'\(loginArray[7])'","hobby":"'\(loginArray[8])'","dob":"'\(loginArray[9])'","Allow_public":"'\(loginArray[10])'","join_date":"'\(loginArray[11])'"])
+                    let _ = mydb.insert("user", rowInfo: ["User_ID":"'\(loginArray[0])'","S_Name":"'\(loginArray[1])'","G_Name":"'\(loginArray[2])'","M_Name":"'\(loginArray[3])'","phone":"'\(loginArray[4])'","Area_code":"'\(loginArray[5])'","gender":"'\(loginArray[6])'","description":"'\(loginArray[7])'","hobby":"'\(loginArray[8])'","dob":"'\(loginArray[9])'","Allow_public":"'\(loginArray[10])'","icon":"'\(loginArray[10])'","join_date":"'\(loginArray[12])'"])
                 }
                 
             }

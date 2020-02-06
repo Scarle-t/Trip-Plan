@@ -54,7 +54,7 @@ class AccountDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let alert = UIAlertController(title: "New Value", message: "\(self.lblCurrentValue.text)", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "New Value", message: "\(self.lblCurrentValue.text)", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
             case .default:

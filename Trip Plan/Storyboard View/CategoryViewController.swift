@@ -23,7 +23,7 @@ class CategoryViewController: UIViewController, UITableViewDataSource, UITableVi
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
             #selector(ViewController.handleRefresh(_:)),
-                                 for: UIControlEvents.valueChanged)
+                                 for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.white
         
         return refreshControl
